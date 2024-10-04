@@ -1,0 +1,2 @@
+class Tutores < ApplicationRecord
+end
