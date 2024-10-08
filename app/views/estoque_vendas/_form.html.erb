@@ -1,0 +1,42 @@
+<%= form_with(model: estoque_venda) do |form| %>
+  <% if estoque_venda.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(estoque_venda.errors.count, "error") %> prohibited this estoque_venda from being saved:</h2>
+
+      <ul>
+        <% estoque_venda.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :medicamento, style: "display: block" %>
+    <%= form.text_field :medicamento %>
+  </div>
+
+  <div>
+    <%= form.label :preco, style: "display: block" %>
+    <%= form.text_field :preco %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade_disponivel, style: "display: block" %>
+    <%= form.number_field :quantidade_disponivel %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade_venda, style: "display: block" %>
+    <%= form.number_field :quantidade_venda %>
+  </div>
+
+  <div>
+    <%= form.label :fornecedor, style: "display: block" %>
+    <%= form.text_field :fornecedor %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

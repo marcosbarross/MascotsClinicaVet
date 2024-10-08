@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consulta: one
+  data: 2024-10-08
+  medicamentos_prescritos: MyString
+  dosagens: MyString
+  observacao: MyText
+
+two:
+  consulta: two
+  data: 2024-10-08
+  medicamentos_prescritos: MyString
+  dosagens: MyString
+  observacao: MyText

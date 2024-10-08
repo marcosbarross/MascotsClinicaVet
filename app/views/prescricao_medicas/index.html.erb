@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Prescricao medicas</h1>
+
+<div id="prescricao_medicas">
+  <% @prescricao_medicas.each do |prescricao_medica| %>
+    <%= render prescricao_medica %>
+    <p>
+      <%= link_to "Show this prescricao medica", prescricao_medica %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New prescricao medica", new_prescricao_medica_path %>

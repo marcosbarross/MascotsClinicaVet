@@ -1,0 +1,42 @@
+<%= form_with(model: funcionario) do |form| %>
+  <% if funcionario.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(funcionario.errors.count, "error") %> prohibited this funcionario from being saved:</h2>
+
+      <ul>
+        <% funcionario.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :contato, style: "display: block" %>
+    <%= form.text_field :contato %>
+  </div>
+
+  <div>
+    <%= form.label :cargo, style: "display: block" %>
+    <%= form.text_field :cargo %>
+  </div>
+
+  <div>
+    <%= form.label :login, style: "display: block" %>
+    <%= form.text_field :login %>
+  </div>
+
+  <div>
+    <%= form.label :senha, style: "display: block" %>
+    <%= form.text_field :senha %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  veterinario: 1
+  animal: one
+  data: 2024-10-08
+  hora: 2024-10-08 16:46:47
+  observacao: MyText
+
+two:
+  veterinario: 1
+  animal: two
+  data: 2024-10-08
+  hora: 2024-10-08 16:46:47
+  observacao: MyText

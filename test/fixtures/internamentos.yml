@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consulta: one
+  data_inicio: 2024-10-08
+  data_fim: 2024-10-08
+  medicamento: MyString
+  quantidade_medicamento: 1.5
+  obs_monitoramento: MyText
+
+two:
+  consulta: two
+  data_inicio: 2024-10-08
+  data_fim: 2024-10-08
+  medicamento: MyString
+  quantidade_medicamento: 1.5
+  obs_monitoramento: MyText

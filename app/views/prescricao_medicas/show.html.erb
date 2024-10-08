@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @prescricao_medica %>
+
+<div>
+  <%= link_to "Edit this prescricao medica", edit_prescricao_medica_path(@prescricao_medica) %> |
+  <%= link_to "Back to prescricao medicas", prescricao_medicas_path %>
+
+  <%= button_to "Destroy this prescricao medica", @prescricao_medica, method: :delete %>
+</div>

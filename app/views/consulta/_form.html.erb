@@ -1,0 +1,42 @@
+<%= form_with(model: consultum) do |form| %>
+  <% if consultum.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(consultum.errors.count, "error") %> prohibited this consultum from being saved:</h2>
+
+      <ul>
+        <% consultum.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :veterinario, style: "display: block" %>
+    <%= form.number_field :veterinario %>
+  </div>
+
+  <div>
+    <%= form.label :animal_id, style: "display: block" %>
+    <%= form.text_field :animal_id %>
+  </div>
+
+  <div>
+    <%= form.label :data, style: "display: block" %>
+    <%= form.date_field :data %>
+  </div>
+
+  <div>
+    <%= form.label :hora, style: "display: block" %>
+    <%= form.time_field :hora %>
+  </div>
+
+  <div>
+    <%= form.label :observacao, style: "display: block" %>
+    <%= form.text_area :observacao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
