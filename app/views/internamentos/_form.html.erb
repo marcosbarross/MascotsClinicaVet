@@ -1,0 +1,47 @@
+<%= form_with(model: internamento) do |form| %>
+  <% if internamento.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(internamento.errors.count, "error") %> prohibited this internamento from being saved:</h2>
+
+      <ul>
+        <% internamento.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :consulta_id, style: "display: block" %>
+    <%= form.text_field :consulta_id %>
+  </div>
+
+  <div>
+    <%= form.label :data_inicio, style: "display: block" %>
+    <%= form.date_field :data_inicio %>
+  </div>
+
+  <div>
+    <%= form.label :data_fim, style: "display: block" %>
+    <%= form.date_field :data_fim %>
+  </div>
+
+  <div>
+    <%= form.label :medicamento, style: "display: block" %>
+    <%= form.text_field :medicamento %>
+  </div>
+
+  <div>
+    <%= form.label :quantidade_medicamento, style: "display: block" %>
+    <%= form.text_field :quantidade_medicamento %>
+  </div>
+
+  <div>
+    <%= form.label :obs_monitoramento, style: "display: block" %>
+    <%= form.text_area :obs_monitoramento %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

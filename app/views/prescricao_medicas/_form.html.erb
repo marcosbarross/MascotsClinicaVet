@@ -1,0 +1,42 @@
+<%= form_with(model: prescricao_medica) do |form| %>
+  <% if prescricao_medica.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(prescricao_medica.errors.count, "error") %> prohibited this prescricao_medica from being saved:</h2>
+
+      <ul>
+        <% prescricao_medica.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :consulta_id, style: "display: block" %>
+    <%= form.text_field :consulta_id %>
+  </div>
+
+  <div>
+    <%= form.label :data, style: "display: block" %>
+    <%= form.date_field :data %>
+  </div>
+
+  <div>
+    <%= form.label :medicamentos_prescritos, style: "display: block" %>
+    <%= form.text_field :medicamentos_prescritos %>
+  </div>
+
+  <div>
+    <%= form.label :dosagens, style: "display: block" %>
+    <%= form.text_field :dosagens %>
+  </div>
+
+  <div>
+    <%= form.label :observacao, style: "display: block" %>
+    <%= form.text_area :observacao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

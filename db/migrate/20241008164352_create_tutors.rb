@@ -1,7 +1,6 @@
-class CreateTutores < ActiveRecord::Migration[7.1]
+class CreateTutors < ActiveRecord::Migration[7.1]
   def change
-    create_table :tutores do |t|
-
+    create_table :tutors do |t|
       t.string :nome
       t.string :endereco
       t.string :telefone
