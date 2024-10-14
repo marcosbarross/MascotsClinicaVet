@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Estoque vendas</h1>
+
+<div id="estoque_vendas">
+  <% @estoque_vendas.each do |estoque_venda| %>
+    <%= render estoque_venda %>
+    <p>
+      <%= link_to "Show this estoque venda", estoque_venda %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New estoque venda", new_estoque_venda_path %>

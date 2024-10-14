@@ -1,3 +1,3 @@
 class Animal < ApplicationRecord
-  belongs_to :tutore
+  belongs_to :tutor
 end
