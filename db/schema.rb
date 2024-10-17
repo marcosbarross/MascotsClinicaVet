@@ -103,6 +103,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_165106) do
     t.index ["consulta_id"], name: "index_prescricao_medicas_on_consulta_id"
   end
 
+  create_table "solicitacao_internamentos", force: :cascade do |t|
+    t.bigint "consulta_id", null: false
+    t.date "data_solicitacao"
+    t.text "observacao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["consulta_id"], name: "index_solicitacao_internamentos_on_consulta_id"
+  end
+
   create_table "tutors", force: :cascade do |t|
     t.string "nome"
     t.string "endereco"
@@ -119,4 +128,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_165106) do
   add_foreign_key "exames", "consulta", column: "consulta_id"
   add_foreign_key "internamentos", "consulta", column: "consulta_id"
   add_foreign_key "prescricao_medicas", "consulta", column: "consulta_id"
+  add_foreign_key "solicitacao_internamentos", "consulta", column: "consulta_id"
 end

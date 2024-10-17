@@ -6,22 +6,13 @@ class FuncionariosController < ApplicationController
   # Exibe uma lista de todos os funcionários
   def index
     @funcionarios = Funcionario.all
+    render json: @funcionarios
   end
 
   # GET /funcionarios/1 or /funcionarios/1.json
   # Exibe os detalhes de um funcionário específico
   def show
-  end
-
-  # GET /funcionarios/new
-  # Exibe o formulário para criar um novo funcionário
-  def new
-    @funcionario = Funcionario.new
-  end
-
-  # GET /funcionarios/1/edit
-  # Exibe o formulário para editar um funcionário existente
-  def edit
+    render json: @funcionario
   end
 
   # POST /funcionarios or /funcionarios.json
@@ -29,28 +20,20 @@ class FuncionariosController < ApplicationController
   def create
     @funcionario = Funcionario.new(funcionario_params)
 
-    respond_to do |format|
-      if @funcionario.save
-        format.html { redirect_to funcionario_url(@funcionario), notice: "Funcionário foi criado com sucesso." }
-        format.json { render :show, status: :created, location: @funcionario }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @funcionario.errors, status: :unprocessable_entity }
-      end
+    if @funcionario.save
+      render json: @funcionario, status: :created
+    else
+      render json: @funcionario.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /funcionarios/1 or /funcionarios/1.json
   # Atualiza um funcionário existente com os parâmetros fornecidos
   def update
-    respond_to do |format|
-      if @funcionario.update(funcionario_params)
-        format.html { redirect_to funcionario_url(@funcionario), notice: "Funcionário foi atualizado com sucesso." }
-        format.json { render :show, status: :ok, location: @funcionario }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @funcionario.errors, status: :unprocessable_entity }
-      end
+    if @funcionario.update(funcionario_params)
+      render json: @funcionario, status: :ok
+    else
+      render json: @funcionario.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,11 +41,7 @@ class FuncionariosController < ApplicationController
   # Remove um funcionário específico do banco de dados
   def destroy
     @funcionario.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to funcionarios_url, notice: "Funcionário foi destruído com sucesso." }
-      format.json { head :no_content }
-    end
+    render json: { message: "Funcionário foi destruído com sucesso." }, status: :no_content
   end
 
   private

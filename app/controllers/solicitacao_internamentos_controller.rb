@@ -6,7 +6,6 @@ class SolicitacaoInternamentosController < ApplicationController
   # Exibe uma lista de todas as solicitações de internamento
   def index
     @solicitacao_internamentos = SolicitacaoInternamento.all
-
     render json: @solicitacao_internamentos
   end
 
@@ -47,6 +46,7 @@ class SolicitacaoInternamentosController < ApplicationController
   end
 
   private
+
     # Usa callbacks para compartilhar configurações ou restrições comuns entre as ações.
     def set_solicitacao_internamento
       @solicitacao_internamento = SolicitacaoInternamento.find(params[:id])

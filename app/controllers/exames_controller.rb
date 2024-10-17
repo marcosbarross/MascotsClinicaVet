@@ -6,22 +6,13 @@ class ExamesController < ApplicationController
   # Exibe uma lista de todos os exames
   def index
     @exames = Exame.all
+    render json: @exames
   end
 
   # GET /exames/1 or /exames/1.json
   # Exibe os detalhes de um exame específico
   def show
-  end
-
-  # GET /exames/new
-  # Exibe o formulário para criar um novo exame
-  def new
-    @exame = Exame.new
-  end
-
-  # GET /exames/1/edit
-  # Exibe o formulário para editar um exame existente
-  def edit
+    render json: @exame
   end
 
   # POST /exames or /exames.json
@@ -29,28 +20,20 @@ class ExamesController < ApplicationController
   def create
     @exame = Exame.new(exame_params)
 
-    respond_to do |format|
-      if @exame.save
-        format.html { redirect_to exame_url(@exame), notice: "Exame foi criado com sucesso." }
-        format.json { render :show, status: :created, location: @exame }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @exame.errors, status: :unprocessable_entity }
-      end
+    if @exame.save
+      render json: @exame, status: :created
+    else
+      render json: @exame.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /exames/1 or /exames/1.json
   # Atualiza um exame existente com os parâmetros fornecidos
   def update
-    respond_to do |format|
-      if @exame.update(exame_params)
-        format.html { redirect_to exame_url(@exame), notice: "Exame foi atualizado com sucesso." }
-        format.json { render :show, status: :ok, location: @exame }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @exame.errors, status: :unprocessable_entity }
-      end
+    if @exame.update(exame_params)
+      render json: @exame, status: :ok
+    else
+      render json: @exame.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,11 +41,7 @@ class ExamesController < ApplicationController
   # Remove um exame específico do banco de dados
   def destroy
     @exame.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to exames_url, notice: "Exame foi destruído com sucesso." }
-      format.json { head :no_content }
-    end
+    render json: { message: "Exame foi destruído com sucesso." }, status: :no_content
   end
 
   private

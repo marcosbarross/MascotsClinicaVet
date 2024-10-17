@@ -6,22 +6,13 @@ class AnimalsController < ApplicationController
   # Exibe uma lista de todos os animais
   def index
     @animals = Animal.all
+    render json: @animals
   end
 
   # GET /animals/1 or /animals/1.json
   # Exibe os detalhes de um animal específico
   def show
-  end
-
-  # GET /animals/new
-  # Exibe o formulário para criar um novo animal
-  def new
-    @animal = Animal.new
-  end
-
-  # GET /animals/1/edit
-  # Exibe o formulário para editar um animal existente
-  def edit
+    render json: @animal
   end
 
   # POST /animals or /animals.json
@@ -29,28 +20,20 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.new(animal_params)
 
-    respond_to do |format|
-      if @animal.save
-        format.html { redirect_to animal_url(@animal), notice: "Animal foi criado com sucesso." }
-        format.json { render :show, status: :created, location: @animal }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @animal.errors, status: :unprocessable_entity }
-      end
+    if @animal.save
+      render json: @animal, status: :created
+    else
+      render json: @animal.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /animals/1 or /animals/1.json
   # Atualiza um animal existente com os parâmetros fornecidos
   def update
-    respond_to do |format|
-      if @animal.update(animal_params)
-        format.html { redirect_to animal_url(@animal), notice: "Animal foi atualizado com sucesso." }
-        format.json { render :show, status: :ok, location: @animal }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @animal.errors, status: :unprocessable_entity }
-      end
+    if @animal.update(animal_params)
+      render json: @animal, status: :ok
+    else
+      render json: @animal.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,11 +41,7 @@ class AnimalsController < ApplicationController
   # Remove um animal específico do banco de dados
   def destroy
     @animal.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to animals_url, notice: "Animal foi removido com sucesso." }
-      format.json { head :no_content }
-    end
+    render json: { message: "Animal foi removido com sucesso." }, status: :no_content
   end
 
   private

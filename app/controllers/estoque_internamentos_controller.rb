@@ -6,22 +6,13 @@ class EstoqueInternamentosController < ApplicationController
   # Exibe uma lista de todos os estoques de internamento
   def index
     @estoque_internamentos = EstoqueInternamento.all
+    render json: @estoque_internamentos
   end
 
   # GET /estoque_internamentos/1 or /estoque_internamentos/1.json
   # Exibe os detalhes de um estoque de internamento específico
   def show
-  end
-
-  # GET /estoque_internamentos/new
-  # Exibe o formulário para criar um novo estoque de internamento
-  def new
-    @estoque_internamento = EstoqueInternamento.new
-  end
-
-  # GET /estoque_internamentos/1/edit
-  # Exibe o formulário para editar um estoque de internamento existente
-  def edit
+    render json: @estoque_internamento
   end
 
   # POST /estoque_internamentos or /estoque_internamentos.json
@@ -29,28 +20,20 @@ class EstoqueInternamentosController < ApplicationController
   def create
     @estoque_internamento = EstoqueInternamento.new(estoque_internamento_params)
 
-    respond_to do |format|
-      if @estoque_internamento.save
-        format.html { redirect_to estoque_internamento_url(@estoque_internamento), notice: "Estoque de internamento foi criado com sucesso." }
-        format.json { render :show, status: :created, location: @estoque_internamento }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @estoque_internamento.errors, status: :unprocessable_entity }
-      end
+    if @estoque_internamento.save
+      render json: @estoque_internamento, status: :created
+    else
+      render json: @estoque_internamento.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /estoque_internamentos/1 or /estoque_internamentos/1.json
   # Atualiza um estoque de internamento existente com os parâmetros fornecidos
   def update
-    respond_to do |format|
-      if @estoque_internamento.update(estoque_internamento_params)
-        format.html { redirect_to estoque_internamento_url(@estoque_internamento), notice: "Estoque de internamento foi atualizado com sucesso." }
-        format.json { render :show, status: :ok, location: @estoque_internamento }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @estoque_internamento.errors, status: :unprocessable_entity }
-      end
+    if @estoque_internamento.update(estoque_internamento_params)
+      render json: @estoque_internamento, status: :ok
+    else
+      render json: @estoque_internamento.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,11 +41,7 @@ class EstoqueInternamentosController < ApplicationController
   # Remove um estoque de internamento específico do banco de dados
   def destroy
     @estoque_internamento.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to estoque_internamentos_url, notice: "Estoque de internamento foi destruído com sucesso." }
-      format.json { head :no_content }
-    end
+    render json: { message: "Estoque de internamento foi destruído com sucesso." }, status: :no_content
   end
 
   private

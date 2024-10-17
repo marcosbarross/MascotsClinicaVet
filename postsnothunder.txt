@@ -1,0 +1,46 @@
+<funcionário>
+{
+  "funcionario": {
+    "nome": "João Silva",
+    "contato": "1234-5678",
+    "cargo": "Desenvolvedor",
+    "login": "joao.silva",
+    "senha": "senhaSegura123"
+  }
+}
+<tutors>
+{
+  "tutor": {
+    "nome": "Maria Oliveira",
+    "endereco": "Rua das Flores, 123",
+    "telefone": "9876-5432",
+    "email": "maria.oliveira@example.com"
+  }
+}
+<animals>
+{
+  "animal": {
+    "nome": "Rex",
+    "idade": 5,
+    "especie": "Cachorro",
+    "raca": "Labrador",
+    "peso": 30,
+    "tutor_id": 1
+  }
+}
+<consulta>
+{
+  "consulta": {
+    "veterinario_id": 1,
+    "animal_id": 1,
+    "data": "2024-10-20",
+    "hora": "14:30",
+    "observacao": "Exame de rotina"
+  }
+}
+<solicitação internamento>
+estoque vendas
+prescrição
+exames
+internamentos
+estoque internamentos

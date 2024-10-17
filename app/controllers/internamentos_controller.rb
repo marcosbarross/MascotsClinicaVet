@@ -1,27 +1,18 @@
 class InternamentosController < ApplicationController
   # Antes de executar ações específicas, define o internamento com base no ID fornecido.
-  before_action :set_internamento, only: %i[ show edit update destroy ]
+  before_action :set_internamento, only: %i[ show update destroy ]
 
   # GET /internamentos or /internamentos.json
   # Exibe uma lista de todos os internamentos
   def index
     @internamentos = Internamento.all
+    render json: @internamentos
   end
 
   # GET /internamentos/1 or /internamentos/1.json
   # Exibe os detalhes de um internamento específico
   def show
-  end
-
-  # GET /internamentos/new
-  # Exibe o formulário para criar um novo internamento
-  def new
-    @internamento = Internamento.new
-  end
-
-  # GET /internamentos/1/edit
-  # Exibe o formulário para editar um internamento existente
-  def edit
+    render json: @internamento
   end
 
   # POST /internamentos or /internamentos.json
@@ -29,28 +20,20 @@ class InternamentosController < ApplicationController
   def create
     @internamento = Internamento.new(internamento_params)
 
-    respond_to do |format|
-      if @internamento.save
-        format.html { redirect_to internamento_url(@internamento), notice: "Internamento foi criado com sucesso." }
-        format.json { render :show, status: :created, location: @internamento }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @internamento.errors, status: :unprocessable_entity }
-      end
+    if @internamento.save
+      render json: @internamento, status: :created
+    else
+      render json: @internamento.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /internamentos/1 or /internamentos/1.json
   # Atualiza um internamento existente com os parâmetros fornecidos
   def update
-    respond_to do |format|
-      if @internamento.update(internamento_params)
-        format.html { redirect_to internamento_url(@internamento), notice: "Internamento foi atualizado com sucesso." }
-        format.json { render :show, status: :ok, location: @internamento }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @internamento.errors, status: :unprocessable_entity }
-      end
+    if @internamento.update(internamento_params)
+      render json: @internamento, status: :ok
+    else
+      render json: @internamento.errors, status: :unprocessable_entity
     end
   end
 
@@ -58,11 +41,7 @@ class InternamentosController < ApplicationController
   # Remove um internamento específico do banco de dados
   def destroy
     @internamento.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to internamentos_url, notice: "Internamento foi destruído com sucesso." }
-      format.json { head :no_content }
-    end
+    render json: { message: "Internamento foi destruído com sucesso." }, status: :no_content
   end
 
   private
